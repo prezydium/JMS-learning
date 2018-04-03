@@ -3,6 +3,8 @@ package org.prezydium;
 import javax.jms.JMSException;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -11,6 +13,8 @@ public class AppWindow {
     private JTextArea textArea1;
     private JPanel panel1;
     private JTextField textField1;
+    private JButton disconnectButton;
+    private JTextPane almostGgTextPane;
 
 
     public AppWindow() {
@@ -35,6 +39,7 @@ public class AppWindow {
                 }
             }
         });
+        disconnectButton.addActionListener(actionEvent -> Consumer.setExit(true));
     }
 
     public void appendReceivedMessages(String text) {

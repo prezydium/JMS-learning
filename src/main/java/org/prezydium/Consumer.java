@@ -8,9 +8,17 @@ public class Consumer implements Runnable, ExceptionListener {
 
     private String receivedMessage = "";
 
-    private boolean exit = false;
+    private static boolean exit = false;
 
     private AppWindow appWindow;
+
+    public static boolean isExit() {
+        return exit;
+    }
+
+    public static void setExit(boolean exit) {
+        Consumer.exit = exit;
+    }
 
     public Consumer(AppWindow appWindow){
         this.appWindow = appWindow;
@@ -31,7 +39,6 @@ public class Consumer implements Runnable, ExceptionListener {
             Destination destination = session.createTopic("ORG.PREZYDIUM.TOPIC");
 
             MessageConsumer consumer = session.createConsumer(destination);
-
 
             while (true) {
                 Message msg = consumer.receive();
